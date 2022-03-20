@@ -3,6 +3,8 @@
 
 int button = 7; // change to " = 100" to remove off-button feature
 
+int potentiometer = 9; // port of potentiometer
+
 int inputPorts[] = {9};
 int outputPorts[] = {13};
 
@@ -10,26 +12,23 @@ int inputPortsLength = sizeof(inputPorts) / sizeof(int);
 int outputPortsLength = sizeof(outputPorts) / sizeof(int);
 
 void setup() {
-    pinMode(button, INPUT);
 
-
-    for (int i = 0; i < inputPortsLength; i++) {
+    for (int i = 0; i < inputPortsLength; i++) {    
         pinMode(inputPorts[i], INPUT);
     }
 
     for (int i = 0; i < outputPortsLength; i++) {
         pinMode(outputPorts[i], OUTPUT);
     }
-
 }
 
 void loop() {
     if (button != 100) {
-        int value = digitalRead(button);
+        int on = digitalRead(button);
 
         for (int i = 0; i < outputPortsLength; i++)
         {
-            pinMode(outputPorts[i], value);
+            pinMode(outputPorts[i], on);
         }
     }
 }
